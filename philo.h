@@ -6,18 +6,19 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/02/21 12:10:29 by valentin         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:19:56 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "libft/libft.h"
-# include <stdbool.h>
+# include <sys/time.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <string.h>
+# include <pthread.h>
 
 
 typedef struct s_var
@@ -31,7 +32,7 @@ typedef struct s_var
 }	t_var;
 
 //main.c
-void    init_input(t_var *vars);
+int    init_input(t_var *vars, char **av);
 
 //free.c
 void    ft_free(t_var *vars);

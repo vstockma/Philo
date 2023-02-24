@@ -6,7 +6,7 @@
 /*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:59 by valentin          #+#    #+#             */
-/*   Updated: 2023/02/21 12:12:58 by valentin         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:08:34 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void    ft_error_check(t_var *vars, char **av)
         while (av[j][i])
         {
             if (av[j][i] < '0' || av[j][i] > '9')
+			{
+				printf("Error!\nSomething is wrong with the input");
                 ft_free(vars);
+			}
             i++;
         }
         j++;
