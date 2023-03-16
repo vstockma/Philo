@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:53:59 by valentin          #+#    #+#             */
-/*   Updated: 2023/02/24 13:08:34 by valentin         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:15:16 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    ft_error_check(t_var *vars, char **av)
     int j;
 
     j = 1;
-    while (av[j][i])
+    while (av[j])
     {
         i = 0;
         while (av[j][i])

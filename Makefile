@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
+#    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 11:21:25 by valentin          #+#    #+#              #
-#    Updated: 2023/02/21 12:01:53 by valentin         ###   ########.fr        #
+#    Updated: 2023/02/27 12:28:27 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = philo
 
-SRC = main.c free.c start.c
+SRC = philo.c free.c start.c error.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -pthread -Wall -Werror -Wextra
 
 CC = cc
 

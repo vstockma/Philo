@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/02/24 13:19:56 by valentin         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:58:36 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,29 @@
 # include <pthread.h>
 
 
+typedef struct s_philo
+{
+	t_var	*var;
+    int id;
+    pthread_mutex_t	*rf;
+	pthread_mutex_t	*lf;
+    
+}	t_philo;
+
 typedef struct s_var
 {
+    t_philo *philos;
 	int phil_num;
     int t_die;
     int t_eat;
     int t_sleep;
     int count_to_eat;
+    int start_time;
+    int dead;
+    int finish;
+    pthread_mutex_t	*forks;
+    pthread_mutex_t	lock;
+	pthread_mutex_t	printf;
 
 }	t_var;
 
