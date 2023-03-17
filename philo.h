@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/10 10:58:36 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:36:33 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct s_philo
 {
 	t_var	*var;
     int id;
+    int stat;
+    int eat_counter;
+    int time_he_dies;
+    pthread_mutex_t	lock;
     pthread_mutex_t	*rf;
 	pthread_mutex_t	*lf;
     

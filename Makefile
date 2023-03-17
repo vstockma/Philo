@@ -6,13 +6,13 @@
 #    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 11:21:25 by valentin          #+#    #+#              #
-#    Updated: 2023/02/27 12:28:27 by vstockma         ###   ########.fr        #
+#    Updated: 2023/03/16 14:39:49 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = philo.c free.c start.c error.c
+SRC = philo.c free.c init.c error.c action.c
 
 OBJ = $(SRC:.c=.o)
 

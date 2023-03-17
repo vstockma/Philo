@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 11:21:52 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/16 13:28:50 by vstockma         ###   ########.fr       */
+/*   Created: 2023/03/16 14:39:37 by vstockma          #+#    #+#             */
+/*   Updated: 2023/03/17 13:04:15 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+int ft_1_philo(t_var *vars)
 {
-    t_var *vars;
-
-    vars = (t_var *)malloc(sizeof(t_var));
-    if (ac != 5 && ac != 6)
-    {
-        printf("Error!\nWrong amount of arguments!");
-        ft_free(vars); 
-    }
-    ft_error_check(vars, av);
-    if (init_comb(vars, av) == 1);
-        return (1);
-    ft_free(vars);
-    return (0);
+    ft_put(vars, "has taken a fork\n", 1);
+    ft_sleep(vars->t_die);
+    ft_put(vars, "died", 1);
+    pthread_mux_destroy(&vars->lock);
+    exit(0);
 }
