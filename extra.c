@@ -6,11 +6,20 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/17 13:06:10 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:16:55 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void    thread_join(t_var *vars)
+{
+    int i;
+
+    i = -1;
+    while (++i < vars->phil_num)
+        pthread_join(vars->tid[i], NULL);
+}
 
 void    ft_put(t_var *vars, char *s, int id)
 {
