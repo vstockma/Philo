@@ -6,20 +6,12 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/23 15:16:55 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:57:53 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    thread_join(t_var *vars)
-{
-    int i;
-
-    i = -1;
-    while (++i < vars->phil_num)
-        pthread_join(vars->tid[i], NULL);
-}
 
 void    ft_put(t_var *vars, char *s, int id)
 {
@@ -37,10 +29,9 @@ void    ft_put(t_var *vars, char *s, int id)
     pthread_mutex_unlock(&vars->printf);
 }
 
-void    ft_sleep(int time)
+long long    ft_time(void)
 {
-    long int s;
-    s = current_timestamp();
-    while (current_timestamp() - s < time)
-        usleep(time / 10);
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

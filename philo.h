@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/23 15:10:50 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/27 13:42:01 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
 
 typedef struct s_philo
 {
-	t_var	*var;
-    pthread_t		t;
+    pthread_t		t_nbr;
     int id;
-    int stat;
-    int eat_counter;
-    int time_he_dies;
-    pthread_mutex_t	lock;
-    pthread_mutex_t	*rf;
-	pthread_mutex_t	*lf;
-    
+    int left_fork;
+    int right_fork;
+    int meals_count;
+    int done;
+    long long time_since_last_meal;
+	t_var	*var;
 }	t_philo;
 
 typedef struct s_var
 {
     t_philo *philos;
-    pthread_t		*tid;
+    pthread_mutex_t	*m_forks;
+    pthread_mutex_t	lock;
+	pthread_mutex_t	printf;
 	int phil_num;
     int t_die;
     int t_eat;
@@ -47,21 +47,28 @@ typedef struct s_var
     int start_time;
     int dead;
     int finish;
-    pthread_mutex_t	*forks;
-    pthread_mutex_t	lock;
-	pthread_mutex_t	printf;
-
+    int *forks;
 }	t_var;
 
-//main.c
+//philo.c
 int    init_input(t_var *vars, char **av);
 
-//free.c
-void    ft_free(t_var *vars);
+//init.c
+int    init_comb(t_var *vars, char **av);
+int    init_input(t_var *vars, char **av);
+int init_and_malloc(t_var *vars);
+void init_philos(t_philo *philo, int i);
+int init_threads(t_var *vars);
 
-//start.c
-void    ft_arg5(t_var *vars);
-void    ft_arg6(t_var *vars);
+//action.c
+void ft_routine(void *arg);
+
+//extra.c
+int	ft_atoi(const char *str);
+void    ft_error_check(t_var *vars, char **av);
+
+//free.c
+void    ft_free_destroy(t_var *vars);
 
 //error.c
 int	ft_atoi(const char *str);

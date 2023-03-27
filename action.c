@@ -6,37 +6,32 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:39:37 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/23 15:12:51 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:55:51 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void routine()
-{
-
-}
-
-int ft_1_philo(t_var *vars)
-{
-    ft_put(vars, "has taken a fork\n", 1);
-    ft_sleep(vars->t_die);
-    ft_put(vars, "died", 1);
-    pthread_mux_destroy(&vars->lock);
-    exit(0);
-}
-
-int ft_thread_init(t_var *vars)
+void    check_eat_count(t_var *vars)
 {
     int i;
-    i = -1;
-    vars->start_time = current_timestamp();
-    while (i++ < vars->phil_num)
+
+    i = 0;
+    if(vars->count_to_eat == -1)
+        return ;
+    while (i < vars->phil_num)
     {
-        if (pthread_create(&vars->tid[i], NULL, &routine, &vars->philos[i]))
-            return (1);
-        ft_sleep(1);
+        if (vars->philos[i].meals_count != vars->count_to_eat)
+            return ;
+        i++;
     }
-    return (0);
-    
+    pthread_mutex_lock(&vars->philos->var->printf);
+    printf("%lld all have eaten %d times\n", ft_time()
+        - vars->start_time, vars->count_to_eat);
+    pthread_mutex_unlock(&vars->philos->var->printf);
+}
+
+void ft_routine(void *arg)
+{
+
 }
