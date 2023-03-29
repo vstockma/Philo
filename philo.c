@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:52 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/27 16:18:08 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:59:59 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_var *vars;
+	t_var	*vars;
 
 	vars = (t_var *)malloc(sizeof(t_var));
 	if (ac != 5 || ac != 6)

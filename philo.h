@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/27 16:18:58 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:34:38 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,21 @@ void				init_philos(t_philo *philo, int i);
 int					init_threads(t_var *vars);
 
 //action.c
-void				check_eat_count(t_var *vars);
+int					ft_still_alive(t_philo *philo);
 void				ft_routine(void *arg);
 
+//eat_sleep_repeat.c
+int					ft_is_eating(t_philo *philo);
+
 //extra.c
-long long			ft_time(void) int ft_atoi(const char *str);
+void				check_eat_count(t_var *vars);
+void				ft_handle_state(t_philo *philo, char *state);
 void				ft_error_check(t_var *vars, char **av);
+
+//utils.c
+long long			ft_time(void);
+int					ft_usleep(unsigned int time, t_philo *philo);
+int					ft_atoi(const char *str);
 void				ft_free_destroy(t_var *vars);
 
 #endif

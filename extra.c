@@ -6,39 +6,43 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/27 16:17:59 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:59:35 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+void	check_eat_count(t_var *vars)
 {
-	int		i;
-	int		a;
-	long	value;
+	int	i;
 
-	value = 0;
 	i = 0;
-	a = 1;
-	while (str[i] && ((str[i] >= 7 && str[i] <= 13) || str[i] == ' '))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (vars->count_to_eat == -1)
+		return ;
+	while (i < vars->phil_num)
 	{
-		if (str[i] == '-')
-			a = -a;
+		if (vars->philos[i].meals_count != vars->count_to_eat)
+			return ;
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	pthread_mutex_lock(&vars->philos->var->printf);
+	printf("%lld all have eaten %d times\n", ft_time() - vars->start_time,
+		vars->count_to_eat);
+	pthread_mutex_unlock(&vars->philos->var->printf);
+}
+
+void	ft_handle_state(t_philo *philo, char *state)
+{
+	pthread_mutex_lock(&philo->var->lock);
+	pthread_mutex_lock(&philo->var->printf);
+	if (philo->meals_count != philo->var->count_to_eat && !philo->done
+		&& !philo->var->dead)
 	{
-		value = 10 * value + (str[i] - 48);
-		i++;
-		if (value * a < -2147483648)
-			return (0);
-		else if (value * a > 2147483647)
-			return (-1);
+		printf("%lld %d %s\n", (ft_time() - philo->var->start_time), philo->id,
+			state);
 	}
-	return ((int)value * a);
+	pthread_mutex_unlock(&philo->var->printf);
+	pthread_mutex_unlock(&philo->var->lock);
 }
 
 void	ft_error_check(t_var *vars, char **av)
@@ -61,31 +65,4 @@ void	ft_error_check(t_var *vars, char **av)
 		}
 		j++;
 	}
-}
-
-long long	ft_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	ft_free_destroy(t_var *vars)
-{
-	int i;
-
-	i = 0;
-	while (i < vars->phil_num)
-	{
-		pthread_mutex_destroy(&vars->m_forks[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&vars->printf);
-	pthread_mutex_destroy(&vars->lock);
-	free(vars->m_forks);
-	free(vars->forks);
-	free(vars->philos);
-	free(vars);
-	exit(0);
 }

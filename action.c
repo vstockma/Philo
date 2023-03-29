@@ -6,29 +6,34 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:39:37 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/27 16:17:54 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:54:15 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	check_eat_count(t_var *vars)
+int	ft_still_alive(t_philo *philo)
 {
-	int	i;
-
-	i = 0;
-	if (vars->count_to_eat == -1)
-		return ;
-	while (i < vars->phil_num)
+	pthread_mutex_lock(&philo->var->lock);
+	if (philo->var->dead != 0 || philo->meals_count == philo->var->count_to_eat)
 	{
-		if (vars->philos[i].meals_count != vars->count_to_eat)
-			return ;
-		i++;
+		philo->done = 1;
+		pthread_mutex_unlock(&philo->var->lock);
+		return (0);
 	}
-	pthread_mutex_lock(&vars->philos->var->printf);
-	printf("%lld all have eaten %d times\n", ft_time() - vars->start_time,
-			vars->count_to_eat);
-	pthread_mutex_unlock(&vars->philos->var->printf);
+	if (ft_time() - philo->time_since_last_meal >= philo->var->t_die
+		&& philo->var->dead == 0)
+	{
+		pthread_mutex_unlock(&philo->var->lock);
+		ft_handle_state(philo, "died");
+		pthread_mutex_lock(&philo->var->lock);
+		philo->var->dead = 1;
+		philo->done = 1;
+		pthread_mutex_unlock(&philo->var->lock);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->var->lock);
+	return (1);
 }
 
 void	ft_routine(void *arg)
@@ -36,8 +41,20 @@ void	ft_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while ()
+	while (philo->meals_count != philo->var->count_to_eat && !philo->done)
 	{
+		pthread_mutex_lock(&philo->var->lock);
+		if (!philo->var->dead)
+		{
+			pthread_mutex_unlock(&philo->var->lock);
+			if (!ft_is_eating(philo))
+				return (NULL);
+		}
+		else
+		{
+			pthread_mutex_unlock(&philo->var->lock);
+			return (NULL);
+		}
 	}
 	return (NULL);
 }

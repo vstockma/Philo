@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:41:56 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/27 16:18:03 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:56:59 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	init_input(t_var *vars, char **av)
 	vars->t_die = ft_atoi(av[2]);
 	vars->t_eat = ft_atoi(av[3]);
 	vars->t_sleep = ft_atoi(av[4]);
-	if (vars->phil_num < 1 || vars->phil_num > 200 || vars->t_die < 0 ||
-		vars->t_eat < 0 || vars->t_sleep < 0)
+	if (vars->phil_num < 1 || vars->phil_num > 200 || vars->t_die < 0
+		|| vars->t_eat < 0 || vars->t_sleep < 0)
 		return (1);
 	if (av[5])
 		vars->count_to_eat = ft_atoi(av[5]);
@@ -60,9 +60,9 @@ int	init_and_malloc(t_var *vars)
 	int	i;
 
 	i = 0;
-	vars->m_forks = malloc(sizeof *vars->m_forks * vars->phil_num);
-	vars->philos = malloc(sizeof *vars->philos * vars->phil_num);
-	vars->forks = malloc(sizeof *vars->forks * vars->phil_num);
+	vars->m_forks = malloc(sizeof * vars->m_forks * vars->phil_num);
+	vars->philos = malloc(sizeof * vars->philos * vars->phil_num);
+	vars->forks = malloc(sizeof * vars->forks * vars->phil_num);
 	if (!vars->philos || !vars->m_forks || !vars->forks)
 	{
 		printf("Allocation Error!");
@@ -97,14 +97,13 @@ int	init_threads(t_var *vars)
 	while (i < vars->phil_num)
 	{
 		pthread_create(&vars->philos[i].t_nbr, NULL, ft_routine,
-				(void *)&vars->philos[i]);
+			(void *)&vars->philos[i]);
 		i++;
 	}
 	i = 0;
 	while (i < vars->phil_num)
 	{
 		if (pthread_join(vars->philos[i].t_nbr, NULL) != 0)
-			;
 		{
 			printf("Error joining threads!\n");
 			return (0);
