@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/29 14:34:38 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:26:41 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ int					ft_still_alive(t_philo *philo);
 void				ft_routine(void *arg);
 
 //eat_sleep_repeat.c
+int					ft_is_sleeping(t_philo *philo);
+int					ft_he_eats(t_philo *philo, int order);
 int					ft_is_eating(t_philo *philo);
+void				ft_lock_and_unlock_forks(t_philo *philo, int flag, int order);
+void				ft_let_go_of_forks(t_philo *philo, int order);
 
 //extra.c
 void				check_eat_count(t_var *vars);

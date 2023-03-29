@@ -6,13 +6,13 @@
 #    By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 11:21:25 by valentin          #+#    #+#              #
-#    Updated: 2023/03/27 16:17:07 by vstockma         ###   ########.fr        #
+#    Updated: 2023/03/29 15:08:12 by vstockma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = philo.c init.c extra.c action.c eat_sleep_repeat.c
+SRC = philo.c init.c extra.c action.c eat_sleep_repeat.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
