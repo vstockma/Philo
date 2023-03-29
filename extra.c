@@ -6,11 +6,28 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/29 14:59:35 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:23:00 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_fill_routine(void *arg)
+{
+	(void *)arg;
+	return (0);
+}
+
+void	ft_one_philo(t_var *vars)
+{
+	pthread_create(vars, 1, (void *)ft_fill_routine, NULL);
+	printf("0 1 has taken fork\n");
+	usleep(vars->t_die);
+	printf("%d died\n", vars->t_die);
+	pthread_join(vars, NULL);
+	pthread_mutex_destroy(&vars->lock);
+	ft_free_destroy(vars);
+}
 
 void	check_eat_count(t_var *vars)
 {

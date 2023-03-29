@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/29 15:26:41 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:23:57 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void				ft_lock_and_unlock_forks(t_philo *philo, int flag, int order);
 void				ft_let_go_of_forks(t_philo *philo, int order);
 
 //extra.c
+int	ft_fill_routine(void *arg);
+void	ft_one_philo(t_var *vars);
 void				check_eat_count(t_var *vars);
 void				ft_handle_state(t_philo *philo, char *state);
 void				ft_error_check(t_var *vars, char **av);
