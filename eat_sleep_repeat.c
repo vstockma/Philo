@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:17:00 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/30 13:55:08 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:21:10 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	ft_is_eating(t_philo *philo)
 
 void	ft_lock_and_unlock_forks(t_philo *philo, int flag, int order)
 {
-	
 	if (flag == 1 && order == 1)
 	{
 		pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
