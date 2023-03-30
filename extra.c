@@ -6,46 +6,47 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/29 16:23:00 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:50:59 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_fill_routine(void *arg)
+void	*ft_fill_routine(void *arg)
 {
-	(void *)arg;
-	return (0);
+	arg = NULL;
+	arg++;
+	return (NULL);
 }
 
 void	ft_one_philo(t_var *vars)
 {
-	pthread_create(vars, 1, (void *)ft_fill_routine, NULL);
+	pthread_t	t1;
+	pthread_create(&t1, NULL, ft_fill_routine, NULL);
 	printf("0 1 has taken fork\n");
 	usleep(vars->t_die);
 	printf("%d died\n", vars->t_die);
-	pthread_join(vars, NULL);
-	pthread_mutex_destroy(&vars->lock);
-	ft_free_destroy(vars);
+	pthread_join(t1, NULL);
+	exit(0);
 }
 
-void	check_eat_count(t_var *vars)
+void	check_eat_count(t_var vars)
 {
 	int	i;
 
 	i = 0;
-	if (vars->count_to_eat == -1)
+	if (vars.count_to_eat == -1)
 		return ;
-	while (i < vars->phil_num)
+	while (i < vars.phil_num)
 	{
-		if (vars->philos[i].meals_count != vars->count_to_eat)
+		if (vars.philos[i].meals_count != vars.count_to_eat)
 			return ;
 		i++;
 	}
-	pthread_mutex_lock(&vars->philos->var->printf);
-	printf("%lld all have eaten %d times\n", ft_time() - vars->start_time,
-		vars->count_to_eat);
-	pthread_mutex_unlock(&vars->philos->var->printf);
+	pthread_mutex_lock(&vars.philos->var->printf);
+	printf("%lld all have eaten %d times\n", ft_time() - vars.start_time,
+		vars.count_to_eat);
+	pthread_mutex_unlock(&vars.philos->var->printf);
 }
 
 void	ft_handle_state(t_philo *philo, char *state)
@@ -62,7 +63,7 @@ void	ft_handle_state(t_philo *philo, char *state)
 	pthread_mutex_unlock(&philo->var->lock);
 }
 
-void	ft_error_check(t_var *vars, char **av)
+void	ft_error_check(char **av)
 {
 	int	i;
 	int	j;
@@ -76,7 +77,7 @@ void	ft_error_check(t_var *vars, char **av)
 			if (av[j][i] < '0' || av[j][i] > '9')
 			{
 				printf("Error!\nSomething is wrong with the input");
-				ft_free(vars);
+				exit(1);
 			}
 			i++;
 		}

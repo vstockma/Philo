@@ -6,24 +6,19 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:41:56 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/29 14:56:59 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:18:40 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_comb(t_var *vars, char **av)
+int	init_comb(t_var *vars)
 {
 	int	i;
 
 	i = 0;
-	if (init_input(vars, av) != 0)
-	{
-		printf("Error!\nWrong values for input!");
+	if (init_and_malloc(vars) == 0)
 		return (1);
-	}
-	if (!init_and_malloc(vars))
-		return (0);
 	while (i < vars->phil_num)
 	{
 		vars->philos[i].var = vars;
@@ -48,10 +43,9 @@ int	init_input(t_var *vars, char **av)
 		vars->count_to_eat = ft_atoi(av[5]);
 	else
 		vars->count_to_eat = -1;
-	vars->start_time = current_timestamp();
+	vars->start_time = ft_time();
 	vars->dead = 0;
 	vars->finish = 0;
-	pthread_mutex_init(&vars->lock, NULL);
 	return (0);
 }
 
@@ -65,7 +59,7 @@ int	init_and_malloc(t_var *vars)
 	vars->forks = malloc(sizeof * vars->forks * vars->phil_num);
 	if (!vars->philos || !vars->m_forks || !vars->forks)
 	{
-		printf("Allocation Error!");
+		printf("Malloc Error!");
 		return (0);
 	}
 	while (i < vars->phil_num)

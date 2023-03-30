@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/29 16:23:57 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:51:09 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_philo
 	int				meals_count;
 	int				done;
 	long long		time_since_last_meal;
-	t_var			*var;
+	struct s_var			*var;
 }					t_philo;
 
 typedef struct s_var
@@ -50,7 +50,7 @@ typedef struct s_var
 }					t_var;
 
 //init.c
-int					init_comb(t_var *vars, char **av);
+int					init_comb(t_var *vars);
 int					init_input(t_var *vars, char **av);
 int					init_and_malloc(t_var *vars);
 void				init_philos(t_philo *philo, int i);
@@ -58,7 +58,7 @@ int					init_threads(t_var *vars);
 
 //action.c
 int					ft_still_alive(t_philo *philo);
-void				ft_routine(void *arg);
+void				*ft_routine(void *arg);
 
 //eat_sleep_repeat.c
 int					ft_is_sleeping(t_philo *philo);
@@ -68,11 +68,11 @@ void				ft_lock_and_unlock_forks(t_philo *philo, int flag, int order);
 void				ft_let_go_of_forks(t_philo *philo, int order);
 
 //extra.c
-int	ft_fill_routine(void *arg);
+void	*ft_fill_routine(void *arg);
 void	ft_one_philo(t_var *vars);
-void				check_eat_count(t_var *vars);
+void				check_eat_count(t_var vars);
 void				ft_handle_state(t_philo *philo, char *state);
-void				ft_error_check(t_var *vars, char **av);
+void				ft_error_check(char **av);
 
 //utils.c
 long long			ft_time(void);
