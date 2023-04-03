@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:30:13 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/30 13:05:30 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:02:44 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ void	ft_free_destroy(t_var *vars)
 	free(vars->m_forks);
 	free(vars->forks);
 	free(vars->philos);
-	free(vars);
 	exit(0);
 }

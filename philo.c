@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:52 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/30 15:21:22 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:13:37 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	}
 	if (vars.phil_num == 1)
 		ft_one_philo(&vars);
-	if (init_comb(&vars) == 1)
+	if (!init_comb(&vars))
 		return (1);
 	check_eat_count(vars);
 	ft_free_destroy(&vars);

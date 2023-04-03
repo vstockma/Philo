@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:41:56 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/30 13:18:40 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:02:08 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	init_input(t_var *vars, char **av)
 		vars->count_to_eat = -1;
 	vars->start_time = ft_time();
 	vars->dead = 0;
-	vars->finish = 0;
 	return (0);
 }
 

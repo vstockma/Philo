@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:17:00 by vstockma          #+#    #+#             */
-/*   Updated: 2023/03/30 15:21:10 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:01:58 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_is_sleeping(t_philo *philo)
 	return (1);
 }
 
-int	ft_he_eats(t_philo *philo, int order)
+int	ft_takes_and_eats(t_philo *philo, int order)
 {
 	philo->var->forks[philo->right_fork] = philo->id;
 	philo->var->forks[philo->left_fork] = philo->id;
@@ -60,7 +60,7 @@ int	ft_is_eating(t_philo *philo)
 	if (philo->var->forks[philo->left_fork] == 0
 		&& philo->var->forks[philo->right_fork] == 0)
 	{
-		if (!ft_he_eats(philo, philo->id % 2))
+		if (!ft_takes_and_eats(philo, philo->id % 2))
 			return (0);
 		ft_let_go_of_forks(philo, philo->id % 2);
 		if (!ft_is_sleeping(philo))
@@ -78,27 +78,27 @@ int	ft_is_eating(t_philo *philo)
 
 void	ft_lock_and_unlock_forks(t_philo *philo, int flag, int order)
 {
-	if (flag == 1 && order == 1)
+	if (flag == 1 && order == 0)
 	{
-		pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
 		pthread_mutex_lock(&philo->var->m_forks[philo->right_fork]);
+		pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
 	}
-	else if (flag == 1 && order == 0)
+	else if (flag == 1 && order == 1)
 	{
-		pthread_mutex_lock(&philo->var->m_forks[philo->right_fork]);
 		pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
+		pthread_mutex_lock(&philo->var->m_forks[philo->right_fork]);
 	}
 	else
 	{
-		if (order != 0)
+		if (order == 0)
 		{
-			pthread_mutex_lock(&philo->var->m_forks[philo->right_fork]);
-			pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
+			pthread_mutex_unlock(&philo->var->m_forks[philo->left_fork]);
+			pthread_mutex_unlock(&philo->var->m_forks[philo->right_fork]);
 		}
 		else
 		{
-			pthread_mutex_lock(&philo->var->m_forks[philo->left_fork]);
-			pthread_mutex_lock(&philo->var->m_forks[philo->right_fork]);
+			pthread_mutex_unlock(&philo->var->m_forks[philo->right_fork]);
+			pthread_mutex_unlock(&philo->var->m_forks[philo->left_fork]);
 		}
 	}
 }

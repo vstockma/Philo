@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/03/30 13:51:09 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:12:46 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ typedef struct s_var
 	pthread_mutex_t	lock;
 	pthread_mutex_t	printf;
 	int				phil_num;
-	int				t_die;
-	int				t_eat;
-	int				t_sleep;
+	unsigned int				t_die;
+	unsigned int				t_eat;
+	unsigned int				t_sleep;
+	long long			start_time;
 	int				count_to_eat;
-	int				start_time;
-	int				dead;
-	int				finish;
 	int				*forks;
+	int				dead;
 }					t_var;
 
 //init.c
