@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:52 by valentin          #+#    #+#             */
-/*   Updated: 2023/04/03 16:13:37 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/04 12:22:57 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	main(int ac, char **av)
 		printf("Error!\nWrong amount of arguments!");
 		return (1);
 	}
-	ft_error_check(av);
-	if (init_input(&vars, av) != 0)
+	ft_check_if_args_are_num(av);
+	if (ft_init_input(&vars, av) != 0)
 	{
 		printf("Error!\nWrong values for input!");
 		return (1);
 	}
-	if (vars.phil_num == 1)
+	if (vars.nbr_of_philos == 1)
 		ft_one_philo(&vars);
-	if (!init_comb(&vars))
+	if (!ft_init_all(&vars))
 		return (1);
-	check_eat_count(vars);
+	ft_check_meals_count(vars);
 	ft_free_destroy(&vars);
 	return (0);
 }
