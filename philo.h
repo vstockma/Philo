@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 11:21:39 by valentin          #+#    #+#             */
-/*   Updated: 2023/04/04 12:43:53 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:24:53 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ typedef struct s_var
 	int				dead;
 }					t_var;
 
+//main.c
+int					ft_check_if_all_alive(t_philo *philo);
+void				*ft_routine(void *arg);
+
 //init.c
 int					ft_init_all(t_var *vars);
 int					ft_init_input(t_var *vars, char **av);
-int					ft_init_and_malloc(t_var *vars);
+int					ft_init_malloc_and_mutex(t_var *vars);
 void				ft_init_philos(t_philo *philo, int i);
 int					ft_init_threads(t_var *vars);
-
-//action.c
-int					ft_check_if_all_alive(t_philo *philo);
-void				*ft_routine(void *arg);
 
 //eat_sleep_repeat.c
 int					ft_is_sleeping(t_philo *philo);
@@ -70,7 +70,7 @@ void				ft_let_go_of_forks(t_philo *philo, int order);
 //extra.c
 void				*ft_routine_one_philo(void *arg);
 void				ft_one_philo(t_var *vars);
-void				ft_check_meals_count(t_var vars);
+void				ft_print_if_meals_count(t_var vars);
 void				ft_handle_state(t_philo *philo, char *state);
 
 //utils.c
