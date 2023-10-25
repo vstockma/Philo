@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:17:00 by vstockma          #+#    #+#             */
-/*   Updated: 2023/04/04 12:31:40 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:03:39 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_takes_and_eats(t_philo *philo, int order)
 	}
 	if (!ft_check_if_all_alive(philo))
 		return (0);
-	ft_handle_state(philo, "has taken fork");
-	ft_handle_state(philo, "has taken fork");
+	ft_handle_state(philo, "has taken a fork");
+	ft_handle_state(philo, "has taken a fork");
 	ft_handle_state(philo, "is eating");
 	philo->time_since_last_meal = ft_get_time_in_ms();
 	if (!ft_usleep(philo->var->time_to_eat, philo))

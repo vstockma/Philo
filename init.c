@@ -18,9 +18,7 @@ int	ft_init_input(t_var *vars, char **av)
 	vars->time_to_die = ft_atoi(av[2]);
 	vars->time_to_eat = ft_atoi(av[3]);
 	vars->time_to_sleep = ft_atoi(av[4]);
-	if (vars->nbr_of_philos < 1 || vars->nbr_of_philos > 200
-		|| vars->time_to_die < 0 || vars->time_to_eat < 0
-		|| vars->time_to_sleep < 0)
+	if (vars->nbr_of_philos < 1 || vars->nbr_of_philos > 200)
 		return (1);
 	if (av[5])
 		vars->nbr_of_times_to_eat = ft_atoi(av[5]);

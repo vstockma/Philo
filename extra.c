@@ -6,7 +6,7 @@
 /*   By: vstockma <vstockma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:49:02 by vstockma          #+#    #+#             */
-/*   Updated: 2023/04/11 10:58:30 by vstockma         ###   ########.fr       */
+/*   Updated: 2023/04/12 11:56:47 by vstockma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_one_philo(t_var *vars)
 	pthread_t	t1;
 
 	pthread_create(&t1, NULL, ft_routine_one_philo, NULL);
-	printf("0 1 has taken fork\n");
+	printf("0 1 has taken a fork\n");
 	usleep(vars->time_to_die);
 	printf("%d died\n", vars->time_to_die);
 	pthread_join(t1, NULL);
@@ -33,9 +33,6 @@ void	ft_one_philo(t_var *vars)
 
 void	ft_print_if_meals_count(t_var vars)
 {
-	int	i;
-
-	i = 0;
 	if (vars.nbr_of_times_to_eat == -1)
 		return ;
 	else if (vars.dead == 0)
